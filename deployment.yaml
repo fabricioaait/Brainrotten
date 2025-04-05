@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brainrot-app
+  labels:
+    app: brainrot-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: brainrot-app
+  template:
+    metadata:
+      labels:
+        app: brainrot-app
+    spec:
+      containers:
+      - name: brainrot-app
+        image: brainrot-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - name: uploads-volume
+          mountPath: /app/uploads
+        - name: videos-volume
+          mountPath: /app/static/videos
+        env:
+        - name: FLASK_ENV
+          value: "production"
+      volumes:
+      - name: uploads-volume
+        persistentVolumeClaim:
+          claimName: brainrot-uploads-pvc
+      - name: videos-volume
+        persistentVolumeClaim:
+          claimName: brainrot-videos-pvc

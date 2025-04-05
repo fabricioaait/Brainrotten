@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Results - Brainrot App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Brainrot App</h1>
+            <p>Transform PDFs into pleasurable educational videos</p>
+        </header>
+        
+        <main>
+            <section class="results-section">
+                <h2>Your Learning Videos</h2>
+                <p class="results-intro">We've transformed <strong>{{ filename }}</strong> into these brain-friendly videos:</p>
+                
+                <div class="video-grid">
+                    {% for video in videos %}
+                    <div class="video-card">
+                        <div class="video-container">
+                            <video controls poster="{{ url_for('static', filename='img/video-placeholder.jpg') }}">
+                                <source src="{{ video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-info">
+                            <h3>{{ video.title }}</h3>
+                            <p class="video-description">{{ video.description }}</p>
+                            <div class="video-tags">
+                                {% for tag in video.tags %}
+                                <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="no-videos" {% if videos %}style="display: none;"{% endif %}>
+                    <div class="placeholder-image"></div>
+                    <p>Your videos are being generated. This process typically takes 2-5 minutes.</p>
+                    <div class="loader"></div>
+                </div>
+                
+                <div class="actions">
+                    <a href="{{ url_for('index') }}" class="btn secondary-btn">Upload Another PDF</a>
+                    <button id="download-all" class="btn primary-btn">Download All Videos</button>
+                </div>
+            </section>
+            
+            <section class="learning-tips">
+                <h2>How to Use These Videos</h2>
+                <div class="tips-container">
+                    <div class="tip">
+                        <div class="tip-icon">🎧</div>
+                        <div class="tip-content">
+                            <h3>Use Headphones</h3>
+                            <p>For the best ASMR experience, use headphones to fully immerse yourself in the pleasant sounds.</p>
+                        </div>
+                    </div>
+                    <div class="tip">
+                        <div class="tip-icon">🔄</div>
+                        <div class="tip-content">
+                            <h3>Repeat Viewing</h3>
+                            <p>Watch each video 2-3 times to strengthen neural connections and improve retention.</p>
+                        </div>
+                    </div>
+                    <div class="tip">
+                        <div class="tip-icon">📝</div>
+                        <div class="tip-content">
+                            <h3>Active Recall</h3>
+                            <p>After watching, try to recall the main points without looking at the video.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Brainrot App - Learn with Pleasure</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

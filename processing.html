@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing PDF - Brainrot App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Brainrot App</h1>
+            <p>Transform PDFs into pleasurable educational videos</p>
+        </header>
+        
+        <main>
+            <section class="processing-section">
+                <h2>Processing Your PDF</h2>
+                <div class="processing-info">
+                    <p>We're currently processing: <strong>{{ filename }}</strong></p>
+                    <div class="loader"></div>
+                    <p class="processing-message">Our AI is analyzing your document and extracting key topics...</p>
+                </div>
+                
+                <div class="processing-steps">
+                    <div class="process-step">
+                        <div class="step-indicator active">1</div>
+                        <p>Extracting text</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">2</div>
+                        <p>Identifying topics</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">3</div>
+                        <p>Creating video content</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-indicator">4</div>
+                        <p>Adding pleasant sounds</p>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <a href="{{ url_for('index') }}" class="btn secondary-btn">Upload Another PDF</a>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Brainrot App - Learn with Pleasure</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

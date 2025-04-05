@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainrot App - Learn with Pleasure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Brainrot App</h1>
+            <p>Transform PDFs into pleasurable educational videos</p>
+        </header>
+        
+        <main>
+            <section class="upload-section">
+                <h2>Upload Your PDF</h2>
+                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                    <div class="file-input-container">
+                        <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" required>
+                        <label for="pdf_file">Choose a PDF file</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Transform to Video</button>
+                </form>
+            </section>
+            
+            <section class="info-section">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Upload PDF</h3>
+                            <p>Upload your study material in PDF format</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>AI Processing</h3>
+                            <p>Our AI extracts and understands key topics</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Video Creation</h3>
+                            <p>Topics are transformed into pleasurable short videos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Brainrot App - Learn with Pleasure</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
